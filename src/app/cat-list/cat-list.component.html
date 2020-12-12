@@ -1,0 +1,32 @@
+<div class="cat">
+    <h1 class="h1">cat лист</h1>
+    <div class="cat-create">
+        <a class="btn cat-create__btn" routerLink="/form">Добавить</a>
+    </div>
+    <ul class="cat-list">
+        <li *ngFor="let cat of cats">
+            <a>
+                <div class="cat__item" *ngIf="cat">
+                    <div class="cat__img">
+                        <img src="{{cat.img}}" alt="">
+                    </div>
+                    <div class="cat__content">
+                        <h3 class="cat__title">{{cat.name}}</h3>
+                        <p class="cat_text">{{cat.description}}</p>
+                        <p>
+                            <strong>Likes: </strong><span>{{cat.like}} </span>
+                            <strong>Dislikes: </strong><span *ngIf="cat.dislike; else elseDislike">{{cat.dislike}} </span>
+                            <ng-template #elseDislike>0</ng-template>
+                        </p>
+                        <button class="btn" (click)="like(cat)">+</button>
+                        <button class="btn" (click)="dislike(cat)">-</button>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <div class="no-cats" *ngIf="cats && cats.length === 0">
+        <p>Котов нет</p>
+    </div>
+</div>
+<cat-form (onAdd)="addCat($event)"></cat-form>

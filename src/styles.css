@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+html,body,h1,h2,h3 {
+    margin: 0;
+    padding: 0;
+}
+
+html,body {
+    height: 100%;
+}
+
+body,div,p,a,span { 
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-size: 18px;
+    line-height: 1.58;
+    color: #333; 
+}
+
+body { 
+    background: #d53369;
+    background: -webkit-linear-gradient(to left, #cbad6d, #d53369);
+    background: linear-gradient(to left, #cbad6d, #d53369); 
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+.container {
+    width: 1140px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;  
+}
+
+@media (max-width: 991px) {
+    .container {
+       padding-left: 10px;
+       padding-right: 10px;
+    }
+}
+
+input {
+    border: 1px solid #E8E8E8;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+   cursor: pointer;
+   text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.form-control {
+    width: 100%;
+    height: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 16px;
+    border: 1px solid #E8E8E8;
+}
+
+.form-control:focus {
+    border: 1px solid #626262;
+}
+
+.nav {
+    display: flex;  
+}
+
+.nav__item {
+   padding-left: 10px;
+   padding-right: 10px;
+}
+
+.nav a {
+        color: white;
+    }
+
+.nav .active {
+    color: red;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
