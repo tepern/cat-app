@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { DataService } from '../data.service';
 import { Cat } from '../cat';
 
 @Component({
@@ -9,7 +10,11 @@ import { Cat } from '../cat';
 
 export class CatFormComponent implements OnInit {
     @Output() onAdd: EventEmitter<Cat> = new EventEmitter<Cat>();
+    @Output() main: EventEmitter<string> = new EventEmitter<string>();
+
     form: FormGroup;
+
+    constructor(private dataService: DataService) {}
 
     ngOnInit() {
         this.form = new FormGroup({
@@ -21,9 +26,14 @@ export class CatFormComponent implements OnInit {
     }
     
     submit() {
-        console.log(this.form);
         const formData = {...this.form.value};
-
         this.onAdd.emit(formData);
+        this.form.reset();
+        this.dataService.addData(formData);
     }
+
+    mainPage() {
+        this.main.emit('list');
+    }
+
 }

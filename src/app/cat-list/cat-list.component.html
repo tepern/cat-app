@@ -1,7 +1,8 @@
-<div class="cat">
+<!--<ng-content></ng-content>-->
+<div class="cat" *ngIf="page==='list';else form">
     <h1 class="h1">cat лист</h1>
     <div class="cat-create">
-        <a class="btn cat-create__btn" routerLink="/form">Добавить</a>
+        <button class="btn cat-create__btn" (click)="page='form'">Добавить</button>
     </div>
     <ul class="cat-list">
         <li *ngFor="let cat of cats">
@@ -27,6 +28,8 @@
     </ul>
     <div class="no-cats" *ngIf="cats && cats.length === 0">
         <p>Котов нет</p>
-    </div>
+    </div>     
 </div>
-<cat-form (onAdd)="addCat($event)"></cat-form>
+<ng-template #form>
+    <cat-form (onAdd)="addCat($event)" (main)="main($event)"></cat-form>
+</ng-template>

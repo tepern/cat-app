@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { HttpService } from './http.service';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { HttpService } from '../http.service';
+import { DataService } from '../data.service';
 import { MatIconModule } from '@angular/material/icon';
 import { Cat } from '../cat';
 
@@ -11,14 +13,19 @@ import { Cat } from '../cat';
 })
 
 export class CatListComponent implements OnInit {
-    @Input() formData: Cat;
+   // @Input() cats: Cat[];
+    subscription: Subscription;
+    page = 'list';
     cats: Cat[]=[];
 
-    constructor(private httpService: HttpService) {}
+    constructor(private dataService: DataService) { 
+      //console.log(this.dataService.getData());
+    }
 
-    ngOnInit(): void {
-        this.httpService.getData().subscribe(data => this.cats=data);
-        console.log(this.cats);
+    ngOnInit() {
+       this.dataService.getData().subscribe(data => data.subscribe(data => {this.cats=data;console.log(data)}));
+       //this.cats = this.dataService.getData(); 
+       //console.log(this.cats);
     }
 
     like(currentCat: Cat): void {
@@ -32,12 +39,18 @@ export class CatListComponent implements OnInit {
            currentCat.dislike = 1;
         }   
     }
+    main(): void {
+       this.page = 'list';
+    }
 
     addCat(formData: Cat): void {
         this.cats.unshift(formData);
     }
 
-    /*
+/*
+    
+
+    
 
     deleteTodo(id: string): void {
         this.todos = this.todos.filter(todo => todo.id != id);  

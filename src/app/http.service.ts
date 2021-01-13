@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import  { HttpClient } from '@angular/common/http';
-import { Cat } from '../cat';
+import { Cat } from './cat';
 
 @Injectable()
 export class HttpService {
@@ -8,6 +8,6 @@ export class HttpService {
     constructor(private http: HttpClient) {}
 
     getData() {
-        return this.http.get<Cat[]>('/assets/cats.json')
-    } 
+      return this.http.get<Cat[]>('/assets/cats.json')
+    }
 }
